@@ -1,6 +1,6 @@
 # Author: Drew Theis
 # Date: 9/5/2019
-# Description: Terminal base script to allow merger of many files
+# Description: GUI based script to allow merger of PCAP/PCAPNG files
 # Version: 0.1.1
 # Update: Added dialog box feature to take user imput
 Add-Type -AssemblyName System.Windows.Forms

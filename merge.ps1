@@ -30,7 +30,7 @@ $form.Controls.Add($CancelButton)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Please enter the file name for the merge:'
+$label.Text = 'Enter the file name for the merge:'
 $form.Controls.Add($label)
 
 $textBox = New-Object System.Windows.Forms.TextBox
@@ -50,9 +50,7 @@ $locationBox.Size = New-Object System.Drawing.Size(260,20)
 $form.Controls.Add($locationBox)
 
 $form.Topmost = $true
-
 $form.Add_Shown({$textBox.Select()})
-$form.Add_Shown({$locationBox.Select()})
 $result = $form.ShowDialog()
 
 if ($result -eq [System.Windows.Forms.DialogResult]::OK) {

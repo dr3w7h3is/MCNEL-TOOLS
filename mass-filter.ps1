@@ -11,7 +11,7 @@ foreach ($singleCap in $cap) {
     If ((Test-Path $destinationFolder\$singleCap) -notcontains $true ) {
         Write-Host "PCAP already processed, moving to next file"
     } else {
-        Write-Host "Starting on PCAP: $singleCap  From: $sourceFolder"
+        Write-Host "Starting on PCAP: $singleCap"
         C:\'Program Files'\Wireshark\tshark.exe -r "$sourceFolder\$singleCap" -Y "(some.wireshark.filter)" -w "$destinationFolder\$singleCap"
         Write-Host "Finished processing PCAP: $singleCap"
     }

@@ -4,4 +4,4 @@
 # Version: 0.0.1
 $DATE = Get-Date -UFormat "%m-%d"
 $OUTFILE = "$DATE" + ".pcapng"
-C:\'Program Files'\Wireshark\dumpcap.exe -i Ethernet -b filesize:2000000 -b files:100 -w "E:\Saved PCAP\$OUTFILE"  
+C:\'Program Files'\Wireshark\dumpcap.exe -i Ethernet -b filesize:2000000 -b files:100 -w "E:\Saved PCAP\$OUTFILE"   

@@ -30,7 +30,7 @@ $form.Controls.Add($CancelButton)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Enter the file name for the merge:'
+$label.Text = 'Enter file name for the merged PCAP'
 $form.Controls.Add($label)
 
 $textBox = New-Object System.Windows.Forms.TextBox

@@ -6,9 +6,40 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
+$findFolders = {
+    [Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
+    [System.Windows.Forms.Application]::EnableVisualStyles()
+    $browse = New-Object System.Windows.Forms.FolderBrowserDialog
+    $browse.SelectedPath = "C:\"
+    $browse.ShowNewFolderButton = $false
+    $browse.Description = "Select a directory"
+
+    $loop = $true
+    while($loop)
+    {
+        if ($browse.ShowDialog() -eq "OK")
+        {
+        $loop = $false
+		
+		#Insert your script here
+		
+        } else
+        {
+            $res = [System.Windows.Forms.MessageBox]::Show("You clicked Cancel. Would you like to try again or exit?", "Select a location", [System.Windows.Forms.MessageBoxButtons]::RetryCancel)
+            if($res -eq "Cancel")
+            {
+                #Ends script
+                return
+            }
+        }
+    }
+    $browse.SelectedPath
+    $browse.Dispose()
+}
+
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'PCAP Merge'
-$form.Size = New-Object System.Drawing.Size(300,200)
+$form.Size = New-Object System.Drawing.Size(320,200)
 $form.StartPosition = 'CenterScreen'
 
 $OKButton = New-Object System.Windows.Forms.Button
@@ -27,6 +58,22 @@ $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
 $form.CancelButton = $CancelButton
 $form.Controls.Add($CancelButton)
 
+$dirButton = New-Object System.Windows.Forms.Button
+$dirButton.Location = New-Object System.Drawing.Point(270,40)
+$dirButton.Size = New-Object System.Drawing.Size(25,20)
+$dirButton.Text = '...'
+$form.CancelButton = $dirButton
+$form.Controls.Add($dirButton)
+
+$dirButton.Add_Click($findFolders)
+
+$dir2Button = New-Object System.Windows.Forms.Button
+$dir2Button.Location = New-Object System.Drawing.Point(270,40)
+$dir2Button.Size = New-Object System.Drawing.Size(25,20)
+$dir2Button.Text = '...'
+$form.CancelButton = $dir2Button
+$form.Controls.Add($dir2Button)
+
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
@@ -37,6 +84,12 @@ $textBox = New-Object System.Windows.Forms.TextBox
 $textBox.Location = New-Object System.Drawing.Point(10,40)
 $textBox.Size = New-Object System.Drawing.Size(260,20)
 $form.Controls.Add($textBox)
+
+#$folderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog
+#$folderBrowser.Description = "Select a folder"
+#$folderBrowser.RootFolder = "MyComputer"
+#$folderBrowser.ShowDialog()
+#$folderBrowser.SelectedPath
 
 $label2 = New-Object System.Windows.Forms.Label
 $label2.Location = New-Object System.Drawing.Point(10,70)

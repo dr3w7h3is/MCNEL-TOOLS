@@ -11,26 +11,26 @@ $form.Text = 'PCAP Merge'
 $form.Size = New-Object System.Drawing.Size(300,200)
 $form.StartPosition = 'CenterScreen'
 
-$OKButton = New-Object System.Windows.Forms.Button
-$OKButton.Location = New-Object System.Drawing.Point(75,120)
-$OKButton.Size = New-Object System.Drawing.Size(75,23)
-$OKButton.Text = 'OK'
-$OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-$form.AcceptButton = $OKButton
-$form.Controls.Add($OKButton)
+$okBtn = New-Object System.Windows.Forms.Button
+$okBtn.Location = New-Object System.Drawing.Point(75,120)
+$okBtn.Size = New-Object System.Drawing.Size(75,23)
+$okBtn.Text = 'OK'
+$okBtn.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $okBtn
+$form.Controls.Add($okBtn)
 
-$CancelButton = New-Object System.Windows.Forms.Button
-$CancelButton.Location = New-Object System.Drawing.Point(150,120)
-$CancelButton.Size = New-Object System.Drawing.Size(75,23)
-$CancelButton.Text = 'Cancel'
-$CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-$form.CancelButton = $CancelButton
-$form.Controls.Add($CancelButton)
+$cancelBtn = New-Object System.Windows.Forms.Button
+$cancelBtn.Location = New-Object System.Drawing.Point(150,120)
+$cancelBtn.Size = New-Object System.Drawing.Size(75,23)
+$cancelBtn.Text = 'Cancel'
+$cancelBtn.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelBtn
+$form.Controls.Add($cancelBtn)
 
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Enter file name for the merged PCAP'
+$label.Text = 'Enter file location for the merged PCAP'
 $form.Controls.Add($label)
 
 $textBox = New-Object System.Windows.Forms.TextBox

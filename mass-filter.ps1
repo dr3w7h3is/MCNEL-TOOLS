@@ -11,21 +11,21 @@ $form.Text = 'PCAP Filter'
 $form.Size = New-Object System.Drawing.Size(300,300)
 $form.StartPosition = 'CenterScreen'
 
-$OKButton = New-Object System.Windows.Forms.Button
-$OKButton.Location = New-Object System.Drawing.Point(75,180)
-$OKButton.Size = New-Object System.Drawing.Size(75,23)
-$OKButton.Text = 'OK'
-$OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-$form.AcceptButton = $OKButton
-$form.Controls.Add($OKButton)
+$okBtn = New-Object System.Windows.Forms.Button
+$okBtn.Location = New-Object System.Drawing.Point(75,180)
+$okBtn.Size = New-Object System.Drawing.Size(75,23)
+$okBtn.Text = 'OK'
+$okBtn.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $okBtn
+$form.Controls.Add($okBtn)
 
-$CancelButton = New-Object System.Windows.Forms.Button
-$CancelButton.Location = New-Object System.Drawing.Point(150,180)
-$CancelButton.Size = New-Object System.Drawing.Size(75,23)
-$CancelButton.Text = 'Cancel'
-$CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-$form.CancelButton = $CancelButton
-$form.Controls.Add($CancelButton)
+$cancelBtn = New-Object System.Windows.Forms.Button
+$cancelBtn.Location = New-Object System.Drawing.Point(150,180)
+$cancelBtn.Size = New-Object System.Drawing.Size(75,23)
+$cancelBtn.Text = 'Cancel'
+$cancelBtn.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelBtn
+$form.Controls.Add($cancelBtn)
 
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)

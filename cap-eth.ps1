@@ -1,14 +1,21 @@
 # Author: Drew Theis
 # Date: 9/5/2019
 # Description: Allows capture on selected interface
-# Version: 0.1.1
-# Update: Added UI for ease of use to the user
+# Version: 0.2.2
+# Update: Added folder broswer function
+function Get-Folder() {
+    $srcLocation = New-Object System.Windows.Forms.FolderBrowserDialog
+    $srcLocation.rootfolder = "Desktop"
+    $PATH = ""
+    if ($srcLocation.ShowDialog() -eq "OK") {$PATH = $srcLocation.SelectedPath}
+    return $PATH
+}
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
-
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'PCAP Merge'
-$form.Size = New-Object System.Drawing.Size(300,300)
+$form.Size = New-Object System.Drawing.Size(320,260)
 $form.StartPosition = 'CenterScreen'
 
 $okBtn = New-Object System.Windows.Forms.Button
@@ -38,6 +45,13 @@ $textBox.Location = New-Object System.Drawing.Point(10,40)
 $textBox.Size = New-Object System.Drawing.Size(260,20)
 $form.Controls.Add($textBox)
 
+$srcFolderBtn = New-Object System.Windows.Forms.Button
+$srcFolderBtn.Location = New-Object System.Drawing.Point(270,40)
+$srcFolderBtn.Size = New-Object System.Drawing.Size(23,20)
+$srcFolderBtn.Text = "..."
+$srcFolderBtn.Add_Click({$textBox.Text = Get-Folder})
+$form.Controls.Add($srcFolderBtn)
+
 $label2 = New-Object System.Windows.Forms.Label
 $label2.Location = New-Object System.Drawing.Point(10,70)
 $label2.Size = New-Object System.Drawing.Size(280,20)
@@ -49,20 +63,10 @@ $listBox.Location = New-Object System.Drawing.Point(10,90)
 $listBox.Size = New-Object System.Drawing.Size(260,20)
 $listBox.Height = 80
 
-[void] $listBox.Items.Add('Ethernet')
-[void] $listBox.Items.Add('Ethernet 2')
-[void] $listBox.Items.Add('Ethernet 3')
-[void] $listBox.Items.Add('Ethernet 4')
-[void] $listBox.Items.Add('Ethernet 5')
-[void] $listBox.Items.Add('Ethernet 6')
-[void] $listBox.Items.Add('Ethernet 7')
-[void] $listBox.Items.Add('Ethernet 8')
-[void] $listBox.Items.Add('Ethernet 9')
-[void] $listBox.Items.Add('Ethernet 10')
-[void] $listBox.Items.Add('Ethernet 11')
-[void] $listBox.Items.Add('Ethernet 12')
-[void] $listBox.Items.Add('Ethernet 13')
-
+$interface = Get-NetAdapter | Select-Object -ExpandProperty Name
+for ($i = 0; $i -lt $interface.Length; $i++) {
+    $listBox.Items.Add($interface[$i])
+}
 $form.Controls.Add($listBox)
 
 $form.Topmost = $true
